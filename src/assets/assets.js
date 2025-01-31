@@ -31,6 +31,7 @@ import profile_icon from './profile_icon.png'
 import bag_icon from './bag_icon.png'
 import logout_icon from './logout_icon.png'
 import parcel_ico from './parcel_ico.png'
+import rating_stars from './rating_stars.png'
 
 export const assets = {
 logo,
@@ -48,7 +49,8 @@ cross_icon,
 profile_icon,
 logout_icon,
 bag_icon,
-parcel_ico
+parcel_ico,
+rating_stars
 }
 
 export const menu_list = [
