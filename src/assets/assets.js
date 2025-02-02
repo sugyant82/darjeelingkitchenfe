@@ -8,7 +8,7 @@ import menu_1 from './appetiser.jpg'
 import menu_2 from './mains.webp'
 import menu_3 from './starters.webp'
 import menu_4 from './beverages.jpg'
-import menu_5 from './vegan.jpg'
+import menu_5 from './vegan.png'
 import menu_6 from './deserts.png'
 
 import food_1 from './food_1.jpeg'
