@@ -8,6 +8,8 @@ import menu_1 from './appetiser.jpg'
 import menu_2 from './mains.webp'
 import menu_3 from './starters.webp'
 import menu_4 from './beverages.jpg'
+import menu_5 from './vegan.jpg'
+import menu_6 from './deserts.png'
 
 import food_1 from './food_1.jpeg'
 import food_2 from './food_2.webp'
@@ -55,20 +57,28 @@ rating_stars
 
 export const menu_list = [
 {
-    menu_name: "appetizers",
+    menu_name: "Specialties",
     menu_image: menu_1
 },
 {
-    menu_name: "mains",
+    menu_name: "Mains",
     menu_image: menu_2
 },
 {
-    menu_name: "starters",
+    menu_name: "Starters",
     menu_image: menu_3
 },
 {
-    menu_name: "beverages",
+    menu_name: "Beverages",
     menu_image: menu_4
+},
+{
+    menu_name:"Pure Veg",
+    menu_image: menu_5
+},
+{
+    menu_name: "Deserts",
+    menu_image: menu_6
 }
 ]
 
