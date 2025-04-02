@@ -11,7 +11,7 @@
 
 .explore-menu-text{
     max-width: 60%;
-    columns: #ff914d;
+    columns: #b83f26;
 }
 
 .explore-menu-list{
@@ -38,7 +38,7 @@
 
 .explore-menu-list-item p{
     margin-top: 10px;
-    color:#ff914d;
+    color:#b83f26;
     font-size: max(1.4vw, 16px);
     cursor: pointer;
 }
@@ -52,7 +52,7 @@
 }
 
 .explore-menu-list-item .active{
-    border: 4px solid #ff914d;
+    border: 4px solid #b83f26;
     padding: 2px;
 }
 
