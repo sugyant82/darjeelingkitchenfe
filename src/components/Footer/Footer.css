@@ -1,6 +1,6 @@
 .footer{
     color: white;
-    background-color: #ff914d;
+    background-color: #B83E26;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -47,7 +47,7 @@ color: white;
      margin-right: 15px;
 }
 .footer-logo{
-    width: 150px;
+    width: 250px;
 }
 
 @media (max-width: 750px){

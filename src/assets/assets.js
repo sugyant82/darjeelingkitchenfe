@@ -1,4 +1,5 @@
 import logo from './darjeeling.png'
+import footer_logo from './darjeeling_footer.png'
 import search_icon from './search_icon.png'
 import basket_icon from './basket_icon.png'
 import add_icon_white from './add_icon_white.png'
@@ -37,6 +38,7 @@ import rating_stars from './rating_stars.png'
 
 export const assets = {
 logo,
+footer_logo,
 search_icon,
 basket_icon,
 add_icon_white,

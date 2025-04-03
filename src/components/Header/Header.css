@@ -1,28 +1,55 @@
-.header{
+.header {
     height: 27.1vw;
     margin: 30px auto;
-    background: url('/hero.jpg') no-repeat;
-    background-size: contain;
-    position:relative;
+    position: relative;
     z-index: -1;
-    border-radius: 15px 15px 15px 15px;
+    border-radius: 15px;
+    overflow: hidden;
 }
 
-.header-contents{
+.hero-image {
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    transition: opacity 1s ease-in-out;
+}
+
+.hero-video {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+}
+
+.header-contents {
     position: absolute;
     display: flex;
     flex-direction: column;
     align-items: start;
     gap: 1.5vw;
     max-width: 50%;
-    bottom: 10%;
-    left: 6vw;
-    animation: fadeIn 3s;
+    bottom: 15%;
+    left: 3%;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 1vw;
+    border-radius: 10px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .header-contents h2{
     font-weight: 300;
-    color: #ff3131;
+    color: #B84E4E;
     background-color: rgba(255, 255, 255, 0.6);
     font-size: max(2.5vw, 20px);
 }
@@ -31,12 +58,12 @@
     color: white;
     background-color: rgba(84, 84, 84, 0.6);
     font-size: 1vw;
-    padding: 5px;
+    padding: 3px;
 }
 
 .header-contents button{
     border:none;
-    color: #ff914d;
+    color: #B83E26;
     font-weight: 500;
     padding: 1vw 2.3vw;
     background-color: white;
@@ -53,6 +80,10 @@
 @media (max-width: 750px){
     .header-contents{
         max-width: 65%;
+    }
+    .header-contents h2{
+        font-weight: 200;
+        font-size: max(2.5vw, 12px);
     }
     .header-contents p{
         display: none;
