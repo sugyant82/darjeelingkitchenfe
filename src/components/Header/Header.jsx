@@ -21,7 +21,7 @@ const Header = () => {
   return (
     <div className="header">
       {heroItems[currentIndex].type === "video" ? (
-        <video className="hero-video" autoPlay loop muted>
+        <video className="hero-video" autoPlay loop muted playsInline >
           <source src={heroItems[currentIndex].src} type="video/mp4" />
         </video>
       ) : (
