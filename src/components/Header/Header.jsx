@@ -18,6 +18,11 @@ const Header = () => {
     return () => clearInterval(interval);
   }, [currentIndex]);
 
+  // Function to manually switch slides
+  const handleDotClick = (index) => {
+    setCurrentIndex(index);
+  };
+
   return (
     <div className="header">
       {heroItems[currentIndex].type === "video" ? (
@@ -35,6 +40,18 @@ const Header = () => {
           of home in every bite.
         </p>
       </div>
+
+      {/* Dots Navigation */}
+      <div className="dot-container">
+        {heroItems.map((_, index) => (
+          <button
+            key={index}
+            className={`dot ${index === currentIndex ? "active" : ""}`}
+            onClick={() => handleDotClick(index)}
+          ></button>
+        ))}
+      </div>
+      
     </div>
   );
 };
