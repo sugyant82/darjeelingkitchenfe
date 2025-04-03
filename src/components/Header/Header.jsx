@@ -13,7 +13,7 @@ const Header = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % heroItems.length);
-    }, heroItems[currentIndex].type === "video" ? 6000 : 4900); // Video plays longer
+    }, heroItems[currentIndex].type === "video" ? 5800 : 4800); // Video plays longer
 
     return () => clearInterval(interval);
   }, [currentIndex]);

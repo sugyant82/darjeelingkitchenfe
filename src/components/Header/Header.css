@@ -78,6 +78,11 @@
 }
 
 @media (max-width: 750px){
+    .header {
+        height: 37.1vw;
+        margin: 20px auto;
+        border-radius: 10px;
+    }
     .header-contents{
         max-width: 65%;
     }
