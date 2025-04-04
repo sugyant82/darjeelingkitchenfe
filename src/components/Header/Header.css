@@ -107,13 +107,9 @@
 
 @media (max-width: 750px){
     .header {
-        height: 60.1vw;
+        height: 55.1vw;
         margin: 15px auto;
         border-radius: 10px;
-    }
-    .hero-image {
-        height: 80%;
-        width: 80%;
     }
     .header-contents{
         max-width: 65%;
