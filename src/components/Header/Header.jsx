@@ -12,9 +12,7 @@ const Header = () => {
   const [isManual, setIsManual] = useState(false);
 
   useEffect(() => {
-
     if (isManual) return; // Skip auto-slide if manually changed
-
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % heroItems.length);
     }, heroItems[currentIndex].type === "video" ? 5800 : 4800); // Video plays longer
@@ -30,7 +28,7 @@ const Header = () => {
     // Restart the auto-slide after a short delay
     setTimeout(() => {
       setIsManual(false);
-    }, 2000);
+    }, 1000);
   };
 
   return (
