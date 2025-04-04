@@ -119,7 +119,8 @@
         font-size: max(2.5vw, 12px);
     }
     .header-contents p{
-        display: none;
+        font-size: 0.6vw;
+        padding: 1px;
     }
     .header-contents button{
         padding: 2vw 4vw;
