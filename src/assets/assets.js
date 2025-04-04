@@ -5,12 +5,12 @@ import basket_icon from './basket_icon.png'
 import add_icon_white from './add_icon_white.png'
 import add_icon_green from './add_icon_green.png'
 import remove_icon_red from './remove_icon_red.png'
-import menu_1 from './momo-x.jpg'
-import menu_2 from './mains-x.webp'
-import menu_3 from './starters-x.jpg'
-import menu_4 from './beverages-x.jpeg'
-import menu_5 from './vegan.png'
-import menu_6 from './deserts-x.webp'
+import menu_1 from './momo-combo.png'
+import menu_2 from './veg-momos.png'
+import menu_3 from './chicken-momos.png'
+import menu_4 from './mutton-momos.png'
+import menu_5 from './beverages.png'
+import menu_6 from './other-dishes.png'
 
 import food_1 from './food_1.jpeg'
 import food_2 from './food_2.webp'
@@ -59,27 +59,27 @@ rating_stars
 
 export const menu_list = [
 {
-    menu_name: "Specialties",
+    menu_name: "Combos",
     menu_image: menu_1
 },
 {
-    menu_name: "Mains",
+    menu_name: "Pure Veg",
     menu_image: menu_2
 },
 {
-    menu_name: "Starters",
+    menu_name: "Chicken",
     menu_image: menu_3
 },
 {
-    menu_name: "Beverages",
+    menu_name: "Mutton",
     menu_image: menu_4
 },
 {
-    menu_name:"Pure Veg",
+    menu_name:"Beverages",
     menu_image: menu_5
 },
 {
-    menu_name: "Deserts",
+    menu_name: "Other Dishes",
     menu_image: menu_6
 }
 ]

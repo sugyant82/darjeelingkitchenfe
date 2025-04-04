@@ -44,9 +44,9 @@ const Header = () => {
       <div className="header-contents">
         <h2>Authentic Flavors in Auckland</h2>
         <p>
-          At Darjeeling Momo NZ, we bring authentic Nepalese and Indian flavors to Auckland. From classic momos to
-          aromatic curries, every dish is crafted with traditional recipes and fresh ingredients, offering you a taste
-          of home in every bite.
+        At Darjeeling Momo NZ, we specialize in authentic Nepalese momos, handmade with love and bursting with flavor. 
+        From classic steamed veg, chicken, and mutton momos to unique variations like Jhol momos, Rose momos, Phaley, cheese, schezwan, green, 
+        and paneer momos. Each bite brings a taste of the hills of Darjeeling to the heart of Auckland. Choose steamed or fried, your momo journey starts here.
         </p>
       </div>
 
