@@ -124,4 +124,12 @@
     .header-contents button{
         padding: 2vw 4vw;
     }
+    .dot {
+    width: 8px;
+    height: 8px;
+    }
+    .dot.active {
+    width: 10px;
+    height: 10px;
+    }
 }
