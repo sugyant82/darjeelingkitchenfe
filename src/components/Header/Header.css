@@ -107,8 +107,8 @@
 
 @media (max-width: 750px){
     .header {
-        height: 37.1vw;
-        margin: 20px auto;
+        height: 50.1vw;
+        margin: 15px auto;
         border-radius: 10px;
     }
     .header-contents{
