@@ -9,26 +9,27 @@ const Header = () => {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isManual, setIsManual] = useState(false);
+  const [autoSlide, setAutoSlide] = useState(true); // Track if auto-slide is active
 
   useEffect(() => {
-    if (isManual) return; // Skip auto-slide if manually changed
+    if (!autoSlide) return; // Stop auto-slide when manually changed
+
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % heroItems.length);
     }, heroItems[currentIndex].type === "video" ? 5800 : 4800); // Video plays longer
 
     return () => clearInterval(interval);
-  }, [currentIndex, isManual]);
+  }, [currentIndex, autoSlide]);
 
   // Function to manually switch slides
   const handleDotClick = (index) => {
-    setIsManual(true); // Mark as manual change
     setCurrentIndex(index); // Immediately update the image
+    setAutoSlide(false); // Stop auto-slide
 
     // Restart the auto-slide after a short delay
     setTimeout(() => {
-      setIsManual(false);
-    }, 1000);
+      setAutoSlide(true);
+    }, 3000);
   };
 
   return (
