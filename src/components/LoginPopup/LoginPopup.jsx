@@ -90,7 +90,7 @@ const LoginPopup = ({setShowLogin}) => {
         const registerData={
             email:user.email,
             name:user.displayName,
-            password:process.env.GOOGLE_USER_PWD
+            password:"googleiam1234"
         }
 
         const response = await axios.post(loginUrl,registerData);
