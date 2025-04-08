@@ -21,6 +21,12 @@
     animation: fadeIn 0.5s;
 }
 
+.login-popup-container img{
+    width: 180px;
+    place-self: center;
+    cursor: pointer;
+}
+
 .login-popup-title {
     display: flex;
     justify-content: space-between;

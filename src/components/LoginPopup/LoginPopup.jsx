@@ -4,7 +4,13 @@ import { assets } from '../../assets/assets'
 import { StoreContext } from '../../context/StoreContext'
 import axios from 'axios'
 
+import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import fireapp from '../../fireapp';
+
 const LoginPopup = ({setShowLogin}) => {
+
+    const [user, setUser] = useState(null);
+    const auth = getAuth(fireapp);
 
     const {url, setToken} = useContext(StoreContext);
 
@@ -14,6 +20,38 @@ const LoginPopup = ({setShowLogin}) => {
         email:"",
         password:""
     })
+
+    const handleGoogleLogin = () => {
+        const provider = new GoogleAuthProvider();
+        signInWithPopup(auth, provider)
+          .then((result) => {
+            const user = result.user;
+            setUser(user);
+            handleSendTokenToBackend(user);
+            onGoogleLogin(user);
+          })
+          .catch((error) => {
+            console.error('Google login error:', error.message);
+          });
+      };
+    
+      const handleSendTokenToBackend = (user) => {
+        user.getIdToken()
+          .then((idToken) => {
+            fetch('https://darjeelingkitchenbe.onrender.com/verifyToken', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ token: idToken }),
+            })
+            .then(response => response.json())
+            .then(dat => console.log('✅ Backend verified:', dat.decodedToken.name,dat.decodedToken.email))
+            .catch(error => console.error('❌ Error:', error));
+          })
+          .catch(error => console.error('❌ Error getting ID token:', error));
+      };
+
 
     const onChangeHandler = (event) =>{
         const name = event.target.name;
@@ -44,6 +82,44 @@ const LoginPopup = ({setShowLogin}) => {
     
     }
 
+    const onGoogleLogin = async(user) => {
+        
+        const loginUrl=url+"/api/user/login";
+        const signupUrl = url+"/api/user/register";
+        
+        const registerData={
+            email:user.email,
+            name:user.displayName,
+            password:process.env.GOOGLE_USER_PWD
+        }
+
+        const response = await axios.post(loginUrl,registerData);
+        console.log(response);
+        if(response.data.success){
+            setToken(response.data.token);
+            localStorage.setItem("token",response.data.token);
+            setShowLogin(false);
+        }
+        else if (response.data.message==="User Doesn't exist"){
+            console.log("user data",user.displayName, user.email);
+            console.log(signupUrl);
+
+            const responseSignup = await axios.post(signupUrl,registerData);
+            console.log(responseSignup.data.success);
+
+            if(responseSignup.data.success){
+                setToken(responseSignup.data.token);
+                localStorage.setItem("token",responseSignup.data.token);
+                setShowLogin(false);
+            }
+            else{
+                alert(responseSignup.data.message);
+            }
+        }
+        
+    
+    }
+
     return (
         <div className='login-popup'>
             <form onSubmit={onLogin} action="" className="login-popup-container">
@@ -57,6 +133,9 @@ const LoginPopup = ({setShowLogin}) => {
                 <input name='password' onChange={onChangeHandler} value={data.password} type="password" placeholder='Password' required />
             </div>
             <button type='submit'>{currState==="Sign Up"?"Create Account":"Login"}</button>
+            <div className="login-popup-container">
+                <img src={assets.google_login_button} alt="Login with Google" onClick={handleGoogleLogin}/>
+            </div>
             <div className="login-popup-condition">
                 <input type="checkbox" required />
                 <p>By continuing, I agree to the terms of use & privacy policy.</p>

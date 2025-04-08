@@ -36,6 +36,8 @@ import logout_icon from './logout_icon.png'
 import parcel_ico from './parcel_ico.png'
 import rating_stars from './rating_stars.png'
 
+import google_login_button from './google-login-button.png'
+
 export const assets = {
 logo,
 footer_logo,
@@ -54,7 +56,8 @@ profile_icon,
 logout_icon,
 bag_icon,
 parcel_ico,
-rating_stars
+rating_stars,
+google_login_button
 }
 
 export const menu_list = [
