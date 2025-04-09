@@ -11,6 +11,7 @@ export const StoreContextProvider = (props) => {
     //const url= import.meta.env.VITE_BACKEND_URL;
 
     const [token, setToken] = useState("");
+    const [user, setUser] = useState(null);
 
     const [food_list, setFoodList] = useState([]);
 
@@ -32,6 +33,14 @@ export const StoreContextProvider = (props) => {
         if (token) {
             await axios.post(url + "/api/cart/remove", { itemId }, { headers: { token } });
         }
+    }
+
+    const storeFirebaseUserContext = (user) => {
+        setUser(user);
+    }
+
+    const getFirebaseUserContext = () => {
+        return user;
     }
 
     const getTotalCartAmount = () => {
@@ -80,7 +89,9 @@ export const StoreContextProvider = (props) => {
         url,
         token,
         setToken,
-        setFoodList
+        setFoodList,
+        storeFirebaseUserContext,
+        getFirebaseUserContext
     }
 
     return (

@@ -9,10 +9,10 @@ import fireapp from '../../fireapp';
 
 const LoginPopup = ({setShowLogin}) => {
 
-    const [user, setUser] = useState(null);
     const auth = getAuth(fireapp);
+    const [user, setUser] = useState(null);
 
-    const {url, setToken} = useContext(StoreContext);
+    const {url, setToken, storeFirebaseUserContext} = useContext(StoreContext);
 
     const [currState, setCurrState] = useState("Login")
     const [data, setData] = useState({
@@ -27,6 +27,7 @@ const LoginPopup = ({setShowLogin}) => {
           .then((result) => {
             const user = result.user;
             setUser(user);
+            console.log(user);
             handleSendTokenToBackend(user);
             onGoogleLogin(user);
           })
@@ -74,6 +75,7 @@ const LoginPopup = ({setShowLogin}) => {
         if(response.data.success){
             setToken(response.data.token);
             localStorage.setItem("token",response.data.token);
+            storeFirebaseUserContext(null);
             setShowLogin(false);
         }
         else{
@@ -117,7 +119,7 @@ const LoginPopup = ({setShowLogin}) => {
             }
         }
         
-    
+        storeFirebaseUserContext(user);
     }
 
     return (

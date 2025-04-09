@@ -57,15 +57,12 @@
 }
 
 .product-popup-container .addProduct{
-    width: 40px;
+    width: 150px;
     position: relative;
-    bottom: 15px;
-    right: 15px;
     cursor: pointer;
     border-radius:10%;
     color:white;
     align-self: center;
-    margin-right: 20px;
 }
 
 .product-popup-container hr{
@@ -117,3 +114,17 @@ margin-top: 2px;
     margin-right: 20px;
 }
 
+
+@media (max-width: 750px){
+    .product-popup-container {
+        width: max(20vw, 280px);
+        gap:5px;
+        margin-right: 20px;
+    }
+    .food-item-image-product{
+        width: 200px;
+        border-radius: 10px;
+        padding: 5px;
+        margin-right: 20px;
+    }
+}

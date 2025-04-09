@@ -66,6 +66,11 @@
     position:relative;
 }
 
+.navbar-profile .account-photo {
+    border-radius: 50%;
+    width: 50px;
+}
+
 .nav-profile-dropdown{
     position: absolute;
     display:none;
