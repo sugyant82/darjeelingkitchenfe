@@ -21,20 +21,28 @@ const LoginPopup = ({setShowLogin}) => {
         password:""
     })
 
+    const [loadingGoogleLogin, setLoadingGoogleLogin] = useState(false);
+
+
     const handleGoogleLogin = () => {
+        setLoadingGoogleLogin(true);
         const provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider)
           .then((result) => {
             const user = result.user;
             setUser(user);
-            console.log(user);
             handleSendTokenToBackend(user);
             onGoogleLogin(user);
           })
           .catch((error) => {
             console.error('Google login error:', error.message);
+            alert("Google login failed. Please try again.");
+          })
+          .finally(() => {
+            setLoadingGoogleLogin(false);
           });
       };
+      
     
       const handleSendTokenToBackend = (user) => {
         user.getIdToken()
@@ -134,9 +142,10 @@ const LoginPopup = ({setShowLogin}) => {
                 <input name='email' onChange={onChangeHandler} value={data.email} type="email" placeholder='Your Email' required />
                 <input name='password' onChange={onChangeHandler} value={data.password} type="password" placeholder='Password' required />
             </div>
-            <button type='submit'>{currState==="Sign Up"?"Create Account":"Login"}</button>
+            <button type='submit' disabled={loadingGoogleLogin}>{currState==="Sign Up"?"Create Account":"Login"}</button>
             <div className="login-popup-container">
                 <img src={assets.google_login_button} alt="Login with Google" onClick={handleGoogleLogin}/>
+                {loadingGoogleLogin && <div className="spinner"></div>}
             </div>
             <div className="login-popup-condition">
                 <input type="checkbox" required />

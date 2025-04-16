@@ -79,3 +79,20 @@ margin-top: 2px;
     cursor: pointer;
 }
 
+.spinner {
+    margin-top: 10px;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border-left-color: #B83E26;
+    animation: spin 1s ease infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+
