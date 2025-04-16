@@ -110,7 +110,7 @@
 
 @media (max-width: 1050px){
     .navbar .logo{
-        width: 140px;
+        width: 280px;
     }
     .navbar-menu{
         gap: 20px;
@@ -150,5 +150,24 @@
 @media (max-width: 750px){
     .navbar-menu{
      display: none
+    }
+    .navbar .logo{
+        width: 180px;
+    }
+    .navbar-right {
+        gap: 20px;
+    }
+    .navbar-profile{
+        position:relative;
+        cursor: pointer;
+    }
+    .navbar-profile .account-photo {
+        border-radius: 50%;
+        width: 45px;
+        cursor: pointer;
+    }
+    .navbar-profile .profile-icon {
+        width: 45px;
+        cursor: pointer;
     }
 }

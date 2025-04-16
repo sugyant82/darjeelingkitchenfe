@@ -10,7 +10,7 @@
 .product-popup-container {
     place-self: center;
     width: max(33vw, 430px);
-    color: #a6a6a6;
+    color: white;
     background-color: whitesmoke;
     display: flex;
     flex-direction: column;
@@ -109,21 +109,84 @@ margin-top: 2px;
     gap: 5px;
     padding: 3px;
     border-radius:50px;
-    background-color:white;
+    background-color:whitesmoke;
     align-self: center;
     margin-right: 20px;
+}
+.product-item-counter p{
+    color:#B83E26;
+    margin-top: 6px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.image-with-price {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .floating-price-sticker {
+    position: absolute;
+    top: -3px; /* Adjusted upward based on smaller height */
+    right: -15px;
+    background-color: #fbd9d2;
+    color: #B83E26;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 3px dashed #B83E26;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+    background-image: radial-gradient(circle at center, #fbd9d2 60%, transparent 61%);
+  }
+  
+  /* Optional hover effect */
+  .floating-price-sticker:hover {
+    transform: scale(1.05);
+    transition: 0.3s ease;
+  }
+  
+  
+  
+  /* Optional: soft animation effect */
+  .floating-price-sticker:hover {
+    transform: scale(1.05);
+    transition: 0.3s ease;
+  }
+
+@media (max-width: 1550px){
+    .product-popup-container {
+        width: max(30vw, 400px);
+        gap:15px;
+        margin-right: 20px;
+    }
+    .food-item-image-product{
+        width: 320px;
+        border-radius: 12px;
+        padding: 10px;
+        margin: 10px 0px 0px 0px;
+    }
+    .product-popup-title {
+        color: #B83E26;
+        font-size: 16px;
+    }
 }
 
 @media (max-width: 950px){
     .product-popup-container {
         width: max(27vw, 350px);
-        gap:5px;
+        gap:10px;
         margin-right: 20px;
     }
     .food-item-image-product{
-        width: 250px;
+        width: 280px;
         border-radius: 10px;
-        padding: 5px;
+        padding: 8px;
         margin: 10px 0px 0px 0px;
     }
     .product-popup-title {
@@ -147,5 +210,13 @@ margin-top: 2px;
     .product-popup-title {
         color: #B83E26;
         font-size: 11px;
+    }
+    .product-item-counter{
+        background-color:whitesmoke;
+    }
+    .product-item-counter p{
+        color:#B83E26;
+        margin-top: 6px;
+        font-family: Arial, Helvetica, sans-serif;
     }
 }

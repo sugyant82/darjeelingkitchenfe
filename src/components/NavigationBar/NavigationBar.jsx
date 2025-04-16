@@ -30,11 +30,12 @@ const NavigationBar = ({setShowLogin}) => {
       </ul>
       <div className="navbar-right">
         <div className="navbar-search-icon">
-            <Link to='/cart' ><img src={assets.basket_icon} alt="" style={{ width: '30px', height: '30px' }} /></Link>
+            <Link to='/cart' ><img className='cart-icon' src={assets.basket_icon} alt="" style={{ width: '30px', height: '30px' }} /></Link>
             <div className={getTotalCartAmount()===0?"":"dot"}></div>
         </div>
         {!token?<button onClick={()=>setShowLogin(true)} > Sign in</button>:<div className='navbar-profile'>
-           {!!getFirebaseUserContext()?<img className="account-photo" src={getFirebaseUserContext().photoURL} alt=""/>:<img src={assets.profile_icon} alt=""/>}
+           {!!getFirebaseUserContext()?<img className="account-photo" src={getFirebaseUserContext().photoURL} alt=""/>:
+           <img className="profile-icon" src={assets.profile_icon} alt=""/>}
            <ul className="nav-profile-dropdown">
             <li onClick={()=>navigate('/myorders')}> <img src={assets.bag_icon} alt="" /><p>Orders</p></li>
             <hr />

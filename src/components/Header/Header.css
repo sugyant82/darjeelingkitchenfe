@@ -1,6 +1,6 @@
 .header {
     height: 27.1vw;
-    margin: 30px auto;
+    margin: 20px auto;
     position: relative;
     z-index: -1;
     border-radius: 15px;
@@ -108,8 +108,8 @@
 @media (max-width: 750px){
     .header {
         height: 55.1vw;
-        margin: 15px auto;
-        border-radius: 10px;
+        margin: 10px auto;
+        border-radius: 8px;
     }
     .header-contents{
         max-width: 65%;

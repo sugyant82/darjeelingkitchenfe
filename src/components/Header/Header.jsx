@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 
 const Header = () => {
   const heroItems = [
-    { type: "image", src: "/hero1.gif" },
-    { type: "video", src: "/hero2.mp4" }, 
+    { type: "image", src: "/hero123.gif" },
+    { type: "video", src: "/hero101.mp4" }, 
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);

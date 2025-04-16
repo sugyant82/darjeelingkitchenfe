@@ -18,14 +18,20 @@ return (
                             <img onClick={()=>setProductDesc(0)} src={assets.cross_icon} alt="" />
         </div>
     {itemToDisplay ? (    
-      <div> 
+      <div>
+        <div className="image-with-price"> 
       <img className="food-item-image-product" src={url+"/images/"+itemToDisplay.image} alt=""/>  
+      <div className="floating-price-sticker">${itemToDisplay.price}</div>
+      </div>
       <div className="food-desc"> {itemToDisplay.description} </div>
+
        </div>
     ) : (
       <div>Item not found</div>
       
     )}
+
+    
     <hr/>
     {!cartItems[itemToDisplay._id]
             ?<img className='addProduct' onClick={()=>addToCart(itemToDisplay._id)} src={assets.add_icon_white} alt=""/> 

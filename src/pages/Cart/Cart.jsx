@@ -55,10 +55,10 @@ const Cart = () => {
             <hr/>
             <div className="cart-total-details">
             <b>Total</b>
-            <b>${getTotalCartAmount()+(getTotalCartAmount()===0?0:10)}</b>
+            <b>${parseFloat(getTotalCartAmount()+(getTotalCartAmount()===0?0:10)).toFixed(2)}</b>
             </div>
           </div>
-          <button onClick={()=>navigate('/order')}>PROCEED TO CHECKOUT</button>
+          <button onClick={()=>{navigate('/order');window.scrollTo({ top: 0, behavior: 'smooth' })}}>PROCEED TO CHECKOUT</button>
           </div>
           <div className="cart-promocode">
             <div>

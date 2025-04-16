@@ -10,6 +10,7 @@ const MyOrders = () => {
     const {url,token} = useContext(StoreContext);
 
     const fetchOrders = async () =>{
+        window.scrollTo({ top: 0, behavior: 'smooth' }); 
         const response = await axios.post(url+"/api/order/userorders",{},{headers:{token}});
         setData(response.data.data);
         console.log(response.data.data);

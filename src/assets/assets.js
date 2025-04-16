@@ -33,7 +33,7 @@ import cross_icon from './cross_icon.png'
 import profile_icon from './profile_icon.png'
 import bag_icon from './bag_icon.png'
 import logout_icon from './logout_icon.png'
-import parcel_ico from './parcel_ico.png'
+import parcel_ico from './parcel-ico.png'
 import rating_stars from './rating_stars.png'
 
 import google_login_button from './google-login-button.png'
