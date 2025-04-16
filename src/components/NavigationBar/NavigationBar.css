@@ -6,7 +6,7 @@
 }
 
 .navbar .logo{
-    width: 350px;
+    width: 300px;
 }
 
 .navbar-menu{
@@ -64,11 +64,13 @@
 
 .navbar-profile{
     position:relative;
+    cursor: pointer;
 }
 
 .navbar-profile .account-photo {
     border-radius: 50%;
     width: 50px;
+    cursor: pointer;
 }
 
 .nav-profile-dropdown{

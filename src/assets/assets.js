@@ -1,5 +1,5 @@
 import logo from './darjeeling.png'
-import footer_logo from './darjeeling_footer.png'
+import footer_logo from './logo.png'
 import search_icon from './search_icon.png'
 import basket_icon from './basket_icon.png'
 import add_icon_white from './add2Cart.png'
