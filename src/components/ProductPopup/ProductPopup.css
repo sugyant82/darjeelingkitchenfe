@@ -126,6 +126,7 @@ margin-top: 2px;
   
   .floating-price-sticker {
     position: absolute;
+    cursor: pointer;
     top: -3px; /* Adjusted upward based on smaller height */
     right: -15px;
     background-color: #fbd9d2;

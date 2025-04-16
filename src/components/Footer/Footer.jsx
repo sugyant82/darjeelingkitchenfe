@@ -10,9 +10,10 @@ const Footer = () => {
                 <img className="footer-logo" src={assets.footer_logo} alt=''/>
                 <p>Located in the heart of Auckland, we are your go-to destination for authentic Nepalese and Indian flavors. At Darjeeling Momo NZ, we take pride in bringing you a rich variety of traditional dishes, crafted with care and passion. From our kitchen to your home, each meal is thoughtfully prepared using the finest ingredients, bringing people together and keeping age-old traditions alive.</p>
                 <div className="footer-social-icons">
-                    <img src={assets.facebook_icon} alt="" />
+                    <a href='https://www.facebook.com/profile.php?id=61573682579457'><img src={assets.facebook_icon} alt="" /></a>
                     <img src={assets.instagram_icon} alt="" />
-                    <img src={assets.tiktok_icon} alt="" />
+                    <a href='https://www.tiktok.com/@darjeelingkitchennz'>
+                    <img src={assets.tiktok_icon} alt="" /></a>
                 </div>
             </div>
             <div className="footer-content-center">
