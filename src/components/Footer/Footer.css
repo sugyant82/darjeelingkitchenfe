@@ -60,13 +60,13 @@ color: white;
         text-align: center;
     }
     .footer-content-left .footer-logo{
-        width: 200px;
+        width: 280px;
         place-self: center;
         margin-top:-20px;
     }
     .footer-content-left p{
         place-self: center;
-        font-size: 14px;
+        font-size: 12px;
     }
     .footer-content{
         gap: 50px;
