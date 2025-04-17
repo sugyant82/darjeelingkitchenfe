@@ -33,14 +33,27 @@ return (
 
     
     <hr/>
-    {!cartItems[itemToDisplay._id]
-            ?<img className='addProduct' onClick={()=>addToCart(itemToDisplay._id)} src={assets.add_icon_white} alt=""/> 
-            :<div className='product-item-counter' > 
-            <img onClick={()=>removeFromCart(itemToDisplay._id)} src={assets.remove_icon_red} alt=""/>
-            <p>{cartItems[itemToDisplay._id]}</p>
-            <img onClick={()=>addToCart(itemToDisplay._id)} src={assets.add_icon_green} alt=""/>
-            </div>
-    }
+    {!cartItems?.[itemToDisplay._id]
+    ? <img
+        className='addProduct'
+        onClick={() => addToCart(itemToDisplay._id)}
+        src={assets.add_icon_white}
+        alt=""
+      />
+    : <div className='product-item-counter'>
+        <img
+          onClick={() => removeFromCart(itemToDisplay._id)}
+          src={assets.remove_icon_red}
+          alt=""
+        />
+        <p>{cartItems?.[itemToDisplay._id]}</p>
+        <img
+          onClick={() => addToCart(itemToDisplay._id)}
+          src={assets.add_icon_green}
+          alt=""
+        />
+      </div>
+}
 
     </div>
   </div>

@@ -16,31 +16,36 @@ export const StoreContextProvider = (props) => {
     const [food_list, setFoodList] = useState([]);
 
     const addToCart = async (itemId) => {
-        if (!cartItems[itemId]) {
-            setCartItems((prev) => ({ ...prev, [itemId]: 1 }))
-        }
-        else {
-            setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }))
-        }
-        if (token) {
-            await axios.post(url + "/api/cart/add", { itemId }, { headers: { token } });
-        }
-    }
+        if (!itemId) return;
+    
+        // Defensive fallback in case cartItems is undefined
+        const currentCart = cartItems || {};
+    
+        if (!currentCart[itemId]) {
+            setCartItems((prev) => ({ ...(prev || {}), [itemId]: 1 }));
+            localStorage.setItem("cartItems",cartItems);
 
+        } else {
+            setCartItems((prev) => ({ ...(prev || {}), [itemId]: prev[itemId] + 1 }));
+            localStorage.setItem("cartItems",cartItems);
+        }
+    
+        if (token) {
+            try {
+                await axios.post(`${url}/api/cart/add`, { itemId }, { headers: { token } });
+            } catch (error) {
+                console.error("Error adding to cart:", error);
+            }
+        }
+    };
+    
     const removeFromCart = async (itemId) => {
         setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+        localStorage.setItem("cartItems",cartItems);
 
         if (token) {
             await axios.post(url + "/api/cart/remove", { itemId }, { headers: { token } });
         }
-    }
-
-    const storeFirebaseUserContext = (user) => {
-        setUser(user);
-    }
-
-    const getFirebaseUserContext = () => {
-        return user;
     }
 
     const getTotalCartAmount = () => {
@@ -66,6 +71,8 @@ export const StoreContextProvider = (props) => {
     const loadCartData = async (token) => {
         const response = await axios.post(url + "/api/cart/get", {}, { headers: { token } });
         setCartItems(response.data.cartData);
+        const localCartData = localStorage.getItem("cartItems");
+        setCartItems((prev) => ({ ...(prev || {}), localCartData}));
     }
 
     useEffect(() => {
@@ -77,7 +84,7 @@ export const StoreContextProvider = (props) => {
             }
         }
         loadData();
-    }, [])
+    }, [localStorage])
 
     const contextValue = {
         food_list,
@@ -89,9 +96,9 @@ export const StoreContextProvider = (props) => {
         url,
         token,
         setToken,
-        setFoodList,
-        storeFirebaseUserContext,
-        getFirebaseUserContext
+        setUser,
+        user,
+        setFoodList
     }
 
     return (

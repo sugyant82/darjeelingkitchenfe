@@ -22,21 +22,22 @@ const Cart = () => {
         <br />
         <hr />
         {food_list.map((item, index) => {
-          if (cartItems[item._id] > 0) {
+          if (cartItems?.[item._id] > 0) {
             return (
-              <div>
+              <div key={item._id || index}>
                 <div className="cart-items-title cart-items-item">
-                  <img src={url+"/images/"+item.image} alt="" />
+                  <img src={url + "/images/" + item.image} alt={item.name} />
                   <p>{item.name}</p>
                   <p>${item.price}</p>
-                  <p>{cartItems[item._id]}</p>
-                  <p>${item.price * cartItems[item._id]}</p>
-                  <p onClick={()=>removeFromCart(item._id)} className='cross'>x</p>
+                  <p>{cartItems?.[item._id]}</p>
+                  <p>${(item.price * cartItems?.[item._id]).toFixed(2)}</p>
+                  <p onClick={() => removeFromCart(item._id)} className='cross'>x</p>
                 </div>
                 <hr />
               </div>
-            )
+            );
           }
+          return null;
         })}
       </div>
       <div className="cart-bottom">
@@ -47,28 +48,28 @@ const Cart = () => {
               <p>Subtotal</p>
               <p>${getTotalCartAmount()}</p>
             </div>
-            <hr/>
+            <hr />
             <div className="cart-total-details">
               <p>Delivery Fee</p>
-              <p>${getTotalCartAmount()===0?0:10}</p>
+              <p>${getTotalCartAmount() === 0 ? 0 : 10}</p>
             </div>
-            <hr/>
+            <hr />
             <div className="cart-total-details">
-            <b>Total</b>
-            <b>${parseFloat(getTotalCartAmount()+(getTotalCartAmount()===0?0:10)).toFixed(2)}</b>
+              <b>Total</b>
+              <b>${parseFloat(getTotalCartAmount() + (getTotalCartAmount() === 0 ? 0 : 10)).toFixed(2)}</b>
             </div>
           </div>
-          <button onClick={()=>{navigate('/order');window.scrollTo({ top: 0, behavior: 'smooth' })}}>PROCEED TO CHECKOUT</button>
-          </div>
-          <div className="cart-promocode">
-            <div>
-              <p>If you have a promo code, Enter it here</p>
-              <div className="cart-promocode-input">
-                <input type="text" placeholder='promo code' />
-                <button>Submit</button>
-              </div>
+          <button onClick={() => { navigate('/order'); window.scrollTo({ top: 0, behavior: 'smooth' }) }}>PROCEED TO CHECKOUT</button>
+        </div>
+        <div className="cart-promocode">
+          <div>
+            <p>If you have a promo code, Enter it here</p>
+            <div className="cart-promocode-input">
+              <input type="text" placeholder='promo code' />
+              <button>Submit</button>
             </div>
           </div>
+        </div>
       </div>
 
     </div>

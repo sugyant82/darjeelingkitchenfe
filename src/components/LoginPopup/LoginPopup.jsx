@@ -10,9 +10,8 @@ import fireapp from '../../fireapp';
 const LoginPopup = ({setShowLogin}) => {
 
     const auth = getAuth(fireapp);
-    const [user, setUser] = useState(null);
 
-    const {url, setToken, storeFirebaseUserContext} = useContext(StoreContext);
+    const {url, setToken, setUser} = useContext(StoreContext);
 
     const [currState, setCurrState] = useState("Login")
     const [data, setData] = useState({
@@ -29,10 +28,9 @@ const LoginPopup = ({setShowLogin}) => {
         const provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider)
           .then((result) => {
-            const user = result.user;
-            setUser(user);
-            handleSendTokenToBackend(user);
-            onGoogleLogin(user);
+            const use_r = result.user;
+            handleSendTokenToBackend(use_r);
+            onGoogleLogin(use_r);
           })
           .catch((error) => {
             console.error('Google login error:', error.message);
@@ -44,8 +42,8 @@ const LoginPopup = ({setShowLogin}) => {
       };
       
     
-      const handleSendTokenToBackend = (user) => {
-        user.getIdToken()
+      const handleSendTokenToBackend = (use_r) => {
+        use_r.getIdToken()
           .then((idToken) => {
             fetch('https://darjeelingkitchenbe.onrender.com/verifyToken', {
               method: 'POST',
@@ -82,8 +80,9 @@ const LoginPopup = ({setShowLogin}) => {
 
         if(response.data.success){
             setToken(response.data.token);
+            setUser(null);
             localStorage.setItem("token",response.data.token);
-            storeFirebaseUserContext(null);
+            localStorage.setItem("user",null);
             setShowLogin(false);
         }
         else{
@@ -92,14 +91,14 @@ const LoginPopup = ({setShowLogin}) => {
     
     }
 
-    const onGoogleLogin = async(user) => {
+    const onGoogleLogin = async(use_r) => {
         
         const loginUrl=url+"/api/user/login";
         const signupUrl = url+"/api/user/register";
         
         const registerData={
-            email:user.email,
-            name:user.displayName,
+            email:use_r.email,
+            name:use_r.displayName,
             password:"googleiam1234"
         }
 
@@ -107,11 +106,13 @@ const LoginPopup = ({setShowLogin}) => {
         console.log(response);
         if(response.data.success){
             setToken(response.data.token);
+            setUser(use_r);
             localStorage.setItem("token",response.data.token);
+            localStorage.setItem("user",use_r);
             setShowLogin(false);
         }
         else if (response.data.message==="User Doesn't exist"){
-            console.log("user data",user.displayName, user.email);
+            console.log("user data",use_r.displayName, use_r.email);
             console.log(signupUrl);
 
             const responseSignup = await axios.post(signupUrl,registerData);
@@ -119,15 +120,15 @@ const LoginPopup = ({setShowLogin}) => {
 
             if(responseSignup.data.success){
                 setToken(responseSignup.data.token);
+                setUser(use_r);
                 localStorage.setItem("token",responseSignup.data.token);
+                localStorage.setItem("user",use_r);
                 setShowLogin(false);
             }
             else{
                 alert(responseSignup.data.message);
             }
         }
-        
-        storeFirebaseUserContext(user);
     }
 
     return (

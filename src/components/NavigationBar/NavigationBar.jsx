@@ -9,13 +9,17 @@ const NavigationBar = ({setShowLogin}) => {
 
   const [menu, setMenu] = useState("home");
 
-  const {getTotalCartAmount, token, setToken, getFirebaseUserContext, store } = useContext(StoreContext);
+  const {getTotalCartAmount, token, setToken, setCartItems, setUser, user } = useContext(StoreContext);
 
   const navigate = useNavigate();
 
   const logout = () =>{
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("cartItems");
     setToken("");
+    setUser(null);
+    setCartItems({});
     navigate("/");
   }
 
@@ -34,7 +38,7 @@ const NavigationBar = ({setShowLogin}) => {
             <div className={getTotalCartAmount()===0?"":"dot"}></div>
         </div>
         {!token?<button onClick={()=>setShowLogin(true)} > Sign in</button>:<div className='navbar-profile'>
-           {!!getFirebaseUserContext()?<img className="account-photo" src={getFirebaseUserContext().photoURL} alt=""/>:
+           {!!user?<img className="account-photo" src={user.photoURL} alt=""/>:
            <img className="profile-icon" src={assets.profile_icon} alt=""/>}
            <ul className="nav-profile-dropdown">
             <li onClick={()=>navigate('/myorders')}> <img src={assets.bag_icon} alt="" /><p>Orders</p></li>
