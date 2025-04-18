@@ -38,7 +38,7 @@ const NavigationBar = ({setShowLogin}) => {
             <div className={getTotalCartAmount()===0?"":"dot"}></div>
         </div>
         {!token?<button onClick={()=>setShowLogin(true)} > Sign in</button>:<div className='navbar-profile'>
-           {!!user?<img className="account-photo" src={user.photoURL} alt=""/>:
+           {sessionStorage.getItem("user")!=undefined?<img className="account-photo" src={ JSON.parse(sessionStorage.getItem("user"))?.photoURL || assets.profile_icon} alt="User"/>:
            <img className="profile-icon" src={assets.profile_icon} alt=""/>}
            <ul className="nav-profile-dropdown">
             <li onClick={()=>navigate('/myorders')}> <img src={assets.bag_icon} alt="" /><p>Orders</p></li>

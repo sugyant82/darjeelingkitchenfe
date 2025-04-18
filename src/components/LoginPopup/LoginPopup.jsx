@@ -82,7 +82,7 @@ const LoginPopup = ({setShowLogin}) => {
             setToken(response.data.token);
             setUser(null);
             localStorage.setItem("token",response.data.token);
-            localStorage.setItem("user",null);
+            sessionStorage.setItem("user",null);
             setShowLogin(false);
         }
         else{
@@ -108,7 +108,7 @@ const LoginPopup = ({setShowLogin}) => {
             setToken(response.data.token);
             setUser(use_r);
             localStorage.setItem("token",response.data.token);
-            localStorage.setItem("user",use_r);
+            sessionStorage.setItem("user",JSON.stringify(use_r));
             setShowLogin(false);
         }
         else if (response.data.message==="User Doesn't exist"){
@@ -122,7 +122,7 @@ const LoginPopup = ({setShowLogin}) => {
                 setToken(responseSignup.data.token);
                 setUser(use_r);
                 localStorage.setItem("token",responseSignup.data.token);
-                localStorage.setItem("user",use_r);
+                sessionStorage.setItem("user",JSON.stringify(use_r));
                 setShowLogin(false);
             }
             else{
