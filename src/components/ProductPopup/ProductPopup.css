@@ -119,6 +119,10 @@ margin-top: 2px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.product-item-counter img{
+    cursor: pointer;
+}
+
 .image-with-price {
     position: relative;
     display: inline-block;
