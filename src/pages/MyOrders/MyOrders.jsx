@@ -16,6 +16,18 @@ const MyOrders = () => {
         console.log(response.data.data);
     }
 
+    const formatDate = (date) => {
+        return new Date(date).toLocaleString('en-GB', {
+          day: '2-digit',
+          month: 'short',
+          year: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: true
+        }).replace(',', '-');
+      };
+      
+
     useEffect(()=>{
         if (token) {
             fetchOrders();
@@ -40,7 +52,7 @@ const MyOrders = () => {
                         })}
                             </p>
                             <p>${order.amount}</p>
-                            <p>Items: {order.items.length}</p>
+                            <p>Order time: {formatDate(new Date())}</p>
                             <p><span>&#x25cf;</span> <b>{order.status}</b></p>
                             <button onClick={fetchOrders}>Track Order</button>
                     </div>
