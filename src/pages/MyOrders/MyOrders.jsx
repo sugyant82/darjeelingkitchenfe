@@ -3,11 +3,15 @@ import './MyOrders.css'
 import { StoreContext } from '../../context/StoreContext';
 import axios from 'axios';
 import { assets } from '../../assets/assets';
+import { useSearchParams } from 'react-router-dom';
 
 const MyOrders = () => {
 
     const [data, setData] = useState([]);
     const {url,token} = useContext(StoreContext);
+
+    const [searchParams, setSearchParams] = useSearchParams();
+    
 
     const fetchOrders = async () =>{
         window.scrollTo({ top: 0, behavior: 'smooth' }); 
@@ -15,6 +19,17 @@ const MyOrders = () => {
         setData(response.data.data);
         console.log(response.data.data);
     }
+
+    //write a function to check if order created was success or not
+    useEffect(()=>{
+        const orderCreatedsuccess = searchParams.get("success");
+        if(orderCreatedsuccess === "true"){
+            alert("Order Created Successfully");
+        }
+        else if(orderCreatedsuccess === "false"){
+            alert("Order Creation Failed");
+        }
+    },[searchParams])
 
     const formatDate = (date) => {
         return new Date(date).toLocaleString('en-GB', {
@@ -38,7 +53,7 @@ const MyOrders = () => {
     <div className="my-orders">
         <h2>My Orders</h2>
         <div className="container">
-            {data.map((order,index)=>{
+            {data && data.length>0 && data.map((order,index)=>{
                 return (
                     <div key={index} className="my-orders-order">
                             <img src={assets.parcel_ico} alt=""/>
@@ -59,7 +74,6 @@ const MyOrders = () => {
                 )
             })}
         </div>
-      
     </div>
   )
 }
