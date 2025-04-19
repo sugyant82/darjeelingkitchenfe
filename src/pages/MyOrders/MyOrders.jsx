@@ -32,12 +32,12 @@ const MyOrders = () => {
                 setTimeout(() => {
                     setShowEmpty(true);
                     setLoading(false);
-                }, 500);
+                }, 300);
             } else {
                 setLoading(false);
             }
             console.log(orderData);
-        }, 300); // Simulate a loading delay of half second
+        }, 100); // Simulate a loading delay of half second
 
         } catch (error) {
             console.error("Error fetching orders", error);
