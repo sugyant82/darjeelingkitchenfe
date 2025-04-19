@@ -3,9 +3,9 @@
 }
 
 .cart .cart-items .empty-cart img{
-    width: 280px;
+    width: 150px;
     place-self: center;
-    margin: 20px;
+    margin-left: 20px;;
 }
 
 .cart-items-title{

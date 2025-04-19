@@ -3,6 +3,7 @@ import './PlaceOrder.css'
 import { StoreContext } from '../../context/StoreContext'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { assets } from '../../assets/assets';
 
 const PlaceOrder = () => {
 
@@ -43,7 +44,36 @@ const PlaceOrder = () => {
       items: orderItems,
       amount: getTotalCharges(),
       deliveryCharges: getTotalDeliveryAmount(),
-      orderTime:new Date(),
+      orderTime: new Date(),
+    }
+
+    let response = await axios.post(url + "/api/order/place", orderData, { headers: { token } });
+    if (response.data.success) {
+      const { session_url } = response.data;
+      window.location.replace(session_url);
+    }
+    else {
+      alert("Error in response");
+    }
+
+  }
+
+  const saveOrderWithoutPayment = async () => {
+    
+    let orderItems = [];
+    food_list.map((item) => {
+      if (cartItems[item._id] > 0) {
+        let itemInfo = item;
+        itemInfo["quantity"] = cartItems[item._id];
+        orderItems.push(itemInfo);
+      }
+    })
+    let orderData = {
+      address: data,
+      items: orderItems,
+      amount: getTotalCharges(),
+      deliveryCharges: getTotalDeliveryAmount(),
+      orderTime: new Date(),
     }
 
     let response = await axios.post(url + "/api/order/place", orderData, { headers: { token } });
@@ -123,8 +153,19 @@ const PlaceOrder = () => {
               <b>${getTotalCharges()}</b>
             </div>
           </div>
-          <button type='submit'>PROCEED TO PAYMENT</button>
-        </div> </div>
+
+          {/* PAY WITH CARD BUTTON */}
+          <button type="submit">
+            <img src={assets.stripe_button} alt="Pay with Card" />
+          </button>
+
+          {/* CASH ON DELIVERY BUTTON */}
+          <button type="button" onClick={saveOrderWithoutPayment} >
+            <img src={assets.cod_button} alt="Cash On Delivery"/>
+          </button>
+
+        </div>
+      </div>
 
     </form>
   )

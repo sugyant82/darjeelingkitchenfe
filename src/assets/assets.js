@@ -41,6 +41,8 @@ import google_login_button from './google-login-button.png'
 
 import empty_order from './empty_order.gif'
 import empty_cart from './empty_cart.png'
+import stripe_button from './stripe_button.png'
+import cod_button from './cod_button.png'
 
 export const assets = {
 logo,
@@ -64,7 +66,9 @@ parcel_gray_ico,
 rating_stars,
 google_login_button,
 empty_order,
-empty_cart
+empty_cart,
+stripe_button,
+cod_button
 }
 
 export const menu_list = [
