@@ -16,7 +16,7 @@ const Header = () => {
 
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % heroItems.length);
-    }, heroItems[currentIndex].type === "video" ? 9800 : 8000); // Video plays longer
+    }, heroItems[currentIndex].type === "video" ? 9800 : 4900); // Video plays longer
 
     return () => clearInterval(interval);
   }, [currentIndex, autoSlide]);
