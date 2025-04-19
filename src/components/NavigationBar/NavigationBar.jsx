@@ -14,8 +14,8 @@ const NavigationBar = ({setShowLogin}) => {
   const navigate = useNavigate();
 
   const logout = () =>{
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("user");
     localStorage.removeItem("cartItems");
     setToken("");
     setUser(null);

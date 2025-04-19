@@ -81,7 +81,7 @@ const LoginPopup = ({setShowLogin}) => {
         if(response.data.success){
             setToken(response.data.token);
             setUser(null);
-            localStorage.setItem("token",response.data.token);
+            sessionStorage.setItem("token",response.data.token);
             sessionStorage.setItem("user",null);
             setShowLogin(false);
         }
@@ -107,7 +107,7 @@ const LoginPopup = ({setShowLogin}) => {
         if(response.data.success){
             setToken(response.data.token);
             setUser(use_r);
-            localStorage.setItem("token",response.data.token);
+            sessionStorage.setItem("token",response.data.token);
             sessionStorage.setItem("user",JSON.stringify(use_r));
             setShowLogin(false);
         }
@@ -121,7 +121,7 @@ const LoginPopup = ({setShowLogin}) => {
             if(responseSignup.data.success){
                 setToken(responseSignup.data.token);
                 setUser(use_r);
-                localStorage.setItem("token",responseSignup.data.token);
+                sessionStorage.setItem("token",responseSignup.data.token);
                 sessionStorage.setItem("user",JSON.stringify(use_r));
                 setShowLogin(false);
             }
