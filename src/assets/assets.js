@@ -34,6 +34,7 @@ import profile_icon from './profile_icon.png'
 import bag_icon from './bag_icon.png'
 import logout_icon from './logout_icon.png'
 import parcel_ico from './parcel-ico.png'
+import parcel_gray_ico from './parcel-gray-ico.png'
 import rating_stars from './rating_stars.png'
 
 import google_login_button from './google-login-button.png'
@@ -56,6 +57,7 @@ profile_icon,
 logout_icon,
 bag_icon,
 parcel_ico,
+parcel_gray_ico,
 rating_stars,
 google_login_button
 }

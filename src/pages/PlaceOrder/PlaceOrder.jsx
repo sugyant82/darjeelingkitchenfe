@@ -27,17 +27,6 @@ const PlaceOrder = () => {
     setData(data => ({ ...data, [name]: value }));
   }
 
-  const formatDate = (date) => {
-    return new Date(date).toLocaleString('en-GB', {
-      day: '2-digit',
-      month: 'short',
-      year: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: true
-    }).replace(',', ' - ');
-  };
-
   const placeOrdr = async (event) => {
     event.preventDefault();
 
@@ -54,7 +43,7 @@ const PlaceOrder = () => {
       items: orderItems,
       amount: getTotalCharges(),
       deliveryCharges: getTotalDeliveryAmount(),
-      orderTime:formatDate(new Date())
+      orderTime:new Date(),
     }
 
     let response = await axios.post(url + "/api/order/place", orderData, { headers: { token } });
