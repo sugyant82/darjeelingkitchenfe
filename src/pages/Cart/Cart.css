@@ -2,6 +2,12 @@
     margin-top: 50px;
 }
 
+.cart .cart-items .empty-cart img{
+    width: 280px;
+    place-self: center;
+    margin: 20px;
+}
+
 .cart-items-title{
     display: grid;
     grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 0.5fr;

@@ -39,6 +39,9 @@ import rating_stars from './rating_stars.png'
 
 import google_login_button from './google-login-button.png'
 
+import empty_order from './empty_order.gif'
+import empty_cart from './empty_cart.png'
+
 export const assets = {
 logo,
 footer_logo,
@@ -59,7 +62,9 @@ bag_icon,
 parcel_ico,
 parcel_gray_ico,
 rating_stars,
-google_login_button
+google_login_button,
+empty_order,
+empty_cart
 }
 
 export const menu_list = [

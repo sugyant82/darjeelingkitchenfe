@@ -57,7 +57,7 @@ const MyOrders = () => {
                     .sort((a, b) => new Date(b.orderTime) - new Date(a.orderTime))
                     .map((order, index) => {
                         return (
-                            <div key={index} className="my-orders-order">
+                            <div key={index} className={order.status === 'Completed' ? "my-orders-order-completed" : "my-orders-order"}>
                                 <img src={order.status === 'Completed' ? assets.parcel_gray_ico : assets.parcel_ico} alt="" />
                                 <p>{order.items.map((item, index) => {
                                     if (index === order.items.length - 1) {
@@ -75,6 +75,11 @@ const MyOrders = () => {
                             </div>
                         )
                     })}
+                {data.length === 0 &&
+                    <div className="my-orders-empty">
+                        <img src={assets.empty_order} alt="" />
+                    </div>
+                }
             </div>
         </div>
     )
