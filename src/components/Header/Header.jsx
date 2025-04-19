@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 
 const Header = () => {
   const heroItems = [
-    { type: "image", src: "/hero123.gif" },
-    { type: "video", src: "/hero101.mp4" }, 
+    { type: "image", src: "/hero1.gif" },
+    { type: "image", src: "/hero2.gif" }, 
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -16,7 +16,7 @@ const Header = () => {
 
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % heroItems.length);
-    }, heroItems[currentIndex].type === "video" ? 9800 : 4800); // Video plays longer
+    }, heroItems[currentIndex].type === "video" ? 9800 : 8000); // Video plays longer
 
     return () => clearInterval(interval);
   }, [currentIndex, autoSlide]);
