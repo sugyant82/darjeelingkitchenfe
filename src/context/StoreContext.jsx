@@ -13,7 +13,18 @@ export const StoreContextProvider = (props) => {
     const [token, setToken] = useState("");
     const [user, setUser] = useState(null);
 
+    const [deliveryAmount, setDeliveryAmount] = useState(0);
+
     const [food_list, setFoodList] = useState([]);
+
+    const setTotalDeliveryAmount =  (deliveryCharges) => {
+        setDeliveryAmount(deliveryCharges);
+    }
+
+    const getTotalDeliveryAmount =  () => {
+        return deliveryAmount;
+    }
+
 
     const addToCart = async (itemId) => {
         if (!itemId) return;
@@ -98,7 +109,9 @@ export const StoreContextProvider = (props) => {
         setToken,
         setUser,
         user,
-        setFoodList
+        setFoodList,
+        setTotalDeliveryAmount,
+        getTotalDeliveryAmount
     }
 
     return (

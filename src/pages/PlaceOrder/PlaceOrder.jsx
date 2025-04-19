@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const PlaceOrder = () => {
 
-  const { getTotalCartAmount, token, food_list, cartItems, url } = useContext(StoreContext);
+  const { getTotalCartAmount, token, food_list, cartItems, url, getTotalDeliveryAmount } = useContext(StoreContext);
 
   const [data, setData] = useState({
     firstName: "",
@@ -27,28 +27,42 @@ const PlaceOrder = () => {
     setData(data => ({ ...data, [name]: value }));
   }
 
-  const placeOrdr = async(event) =>{
+  const formatDate = (date) => {
+    return new Date(date).toLocaleString('en-GB', {
+      day: '2-digit',
+      month: 'short',
+      year: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true
+    }).replace(',', '-');
+  };
+
+  const placeOrdr = async (event) => {
     event.preventDefault();
 
-    let orderItems =[];
-    food_list.map((item)=>{
-      if(cartItems[item._id]>0){
+    let orderItems = [];
+    food_list.map((item) => {
+      if (cartItems[item._id] > 0) {
         let itemInfo = item;
         itemInfo["quantity"] = cartItems[item._id];
         orderItems.push(itemInfo);
       }
     })
-    let orderData={
+    let orderData = {
       address: data,
       items: orderItems,
-      amount:parseFloat(getTotalCartAmount() + (getTotalCartAmount() === 0 ? 0 : 10)).toFixed(2),
+      amount: getTotalCharges(),
+      deliveryCharges: getTotalDeliveryAmount(),
+      orderTime:formatDate(new Date())
     }
-    let response = await axios.post(url+"/api/order/place", orderData, {headers:{token}});
-    if(response.data.success){
-      const {session_url} =response.data;
+
+    let response = await axios.post(url + "/api/order/place", orderData, { headers: { token } });
+    if (response.data.success) {
+      const { session_url } = response.data;
       window.location.replace(session_url);
     }
-    else{
+    else {
       alert("Error in response");
     }
 
@@ -56,36 +70,49 @@ const PlaceOrder = () => {
 
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    if(!token) {
+  useEffect(() => {
+    if (!token) {
       navigate('/cart');
       alert("Login to checkout!");
     }
-    else if(getTotalCartAmount()===0){
+    else if (getTotalCartAmount() === 0) {
       navigate('/cart');
       alert("Cart is Empty");
     }
-  },[token])
+  }, [token])
+
+  const getTotalCharges = () => {
+    const cartAmt = parseFloat(getTotalCartAmount());
+    const delAmt = parseFloat(getTotalDeliveryAmount());
+    let totalAmount = parseFloat(cartAmt + delAmt).toFixed(2);
+
+    return totalAmount;
+  };
+
 
   return (
     <form onSubmit={placeOrdr} className="place-order">
       <div className="place-order-left">
         <p className="title">Delivery Information</p>
         <div className="multi-fields">
-          <input required name='firstName' onChange={onChangeHandler} value={data.firstName} type="text" placeholder='First Name' />
-          <input required name='lastName' onChange={onChangeHandler} value={data.lastName} type="text" placeholder='Last Name' />
+          <input required name='firstName' onChange={onChangeHandler} value={data.firstName} type="text" placeholder='First Name'
+            style={{ backgroundColor: '#fefafa', border: '1px solid #B83E26' }} />
+          <input required name='lastName' onChange={onChangeHandler} value={data.lastName} type="text" placeholder='Last Name'
+            style={{ backgroundColor: '#fefafa', border: '1px solid #B83E26' }} />
         </div>
-        <input required name='email' onChange={onChangeHandler} value={data.email} type="email" placeholder='Email Address' />
-        <input required name='street' onChange={onChangeHandler} value={data.street} type="text" placeholder='Street' />
+        <input required name='email' onChange={onChangeHandler} value={data.email} type="email" placeholder='Email Address'
+          style={{ backgroundColor: '#fefafa', border: '1px solid #B83E26' }} />
+        <input name='street' onChange={onChangeHandler} value={data.street} type="text" placeholder='Street' />
         <div className="multi-fields">
-          <input required name='city' onChange={onChangeHandler} value={data.city} type="text" placeholder='City' />
-          <input required name='state' onChange={onChangeHandler} value={data.state} type="text" placeholder='Suburb' />
+          <input name='city' onChange={onChangeHandler} value={data.city} type="text" placeholder='City' />
+          <input name='state' onChange={onChangeHandler} value={data.state} type="text" placeholder='Suburb' />
         </div>
         <div className="multi-fields">
-          <input required name='zipcode' onChange={onChangeHandler} value={data.zipcode} type="text" placeholder='Zip Code' />
-          <input required name='country' onChange={onChangeHandler} value={data.country} type="text" placeholder='Country' />
+          <input name='zipcode' onChange={onChangeHandler} value={data.zipcode} type="text" placeholder='Zip Code' />
+          <input name='country' onChange={onChangeHandler} value={data.country} type="text" placeholder='Country' />
         </div>
-        <input required name='phone' onChange={onChangeHandler} value={data.phone} type="text" placeholder='Phone' />
+        <input required name='phone' onChange={onChangeHandler} value={data.phone} type="text" placeholder='Phone'
+          style={{ backgroundColor: '#fefafa', border: '1px solid #B83E26' }} />
       </div>
 
       <div className="place-order-right">
@@ -99,12 +126,12 @@ const PlaceOrder = () => {
             <hr />
             <div className="cart-total-details">
               <p>Delivery Fee</p>
-              <p>${getTotalCartAmount() === 0 ? 0 : 10}</p>
+              <p>${getTotalDeliveryAmount()}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <b>Total</b>
-              <b>${parseFloat(getTotalCartAmount() + (getTotalCartAmount() === 0 ? 0 : 10)).toFixed(2)}</b>
+              <b>${getTotalCharges()}</b>
             </div>
           </div>
           <button type='submit'>PROCEED TO PAYMENT</button>

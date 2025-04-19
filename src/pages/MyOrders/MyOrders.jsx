@@ -30,17 +30,6 @@ const MyOrders = () => {
             alert("Order Creation Failed");
         }
     },[searchParams])
-
-    const formatDate = (date) => {
-        return new Date(date).toLocaleString('en-GB', {
-          day: '2-digit',
-          month: 'short',
-          year: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit',
-          hour12: true
-        }).replace(',', '-');
-      };
       
 
     useEffect(()=>{
@@ -67,7 +56,7 @@ const MyOrders = () => {
                         })}
                             </p>
                             <p>${order.amount}</p>
-                            <p>Order time: {formatDate(new Date())}</p>
+                            <p>Order time: {order.orderTime}</p>
                             <p><span>&#x25cf;</span> <b>{order.status}</b></p>
                             <button onClick={fetchOrders}>Track Order</button>
                     </div>
