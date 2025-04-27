@@ -1,5 +1,5 @@
 .food-display{
-    margin-top: 30px;
+    margin-top: 50px;
 }
 
 .food-display h2{
@@ -13,4 +13,21 @@
     margin-top: 30px;
     gap: 10px;
     row-gap: 25px;
+}
+
+@media (max-width: 750px){
+    .food-display h2{
+        font-size: max(1.3vw,16px);
+        font-weight: 500;
+        margin-bottom: 30px;
+    }
+    
+    .food-display-list{
+        display:grid;
+        grid-template-columns: repeat(auto-fill,minmax(120px,1.2fr));
+        margin-top: 15px;
+        margin-right: 28px;
+        gap: 8px;
+        row-gap: 15px;
+    }
 }
