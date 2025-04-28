@@ -18,6 +18,7 @@ const MyOrders = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         setLoading(true);
         setShowEmpty(false); // Hide empty UI initially
+        console.log(data);
 
         try {
             
