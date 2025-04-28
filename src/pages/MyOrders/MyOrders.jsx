@@ -21,24 +21,24 @@ const MyOrders = () => {
         console.log(data);
 
         try {
-            
+
             setTimeout(async () => {
                 const response = await axios.post(url + "/api/order/userorders", {}, { headers: { token } });
 
-            const orderData = response.data.data;
-            setData(orderData);
+                const orderData = response.data.data;
+                setData(orderData);
 
-            if (orderData.length === 0) {
-                // Delay empty image appearance
-                setTimeout(() => {
-                    setShowEmpty(true);
+                if (orderData.length === 0) {
+                    // Delay empty image appearance
+                    setTimeout(() => {
+                        setShowEmpty(true);
+                        setLoading(false);
+                    }, 300);
+                } else {
                     setLoading(false);
-                }, 300);
-            } else {
-                setLoading(false);
-            }
-            console.log(orderData);
-        }, 100); // Simulate a loading delay of half second
+                }
+                console.log(orderData);
+            }, 100); // Simulate a loading delay of half second
 
         } catch (error) {
             console.error("Error fetching orders", error);
@@ -84,13 +84,27 @@ const MyOrders = () => {
                     .map((order, index) => (
                         <div key={index} className={order.status === 'Completed' ? "my-orders-order-completed" : "my-orders-order"}>
                             <img src={order.status === 'Completed' ? assets.parcel_gray_ico : assets.parcel_ico} alt="" />
+                            <p>Order No: {String(order._id).slice(-5).toUpperCase()}</p>
                             <p>
                                 {order.items.map((item, i) => `${item.name} x ${item.quantity}${i !== order.items.length - 1 ? ', ' : ''}`)}
                             </p>
                             <p>${order.amount}</p>
                             <p>Order time: {formatDate(order.orderTime)}</p>
-                            <p><span>&#x25cf;</span> <b>{order.status}</b></p>
-                            <p><span>Payment Status</span> <b>{order.payment}</b></p>
+                            <p><span>Order Status: </span> <b style={{ color: 'green', fontWeight: 'italic' }}>{order.status}</b></p>
+                            <p>
+                                <span>Payment: </span>
+                                <strong
+                                    style={{
+                                        backgroundColor: order.payment ? "green" : (order.paymentMethod === "stripe" && !order.payment ? "red" : "red"),
+                                        fontWeight: 'bold',
+                                        color: 'white', // Highlight color
+                                        padding: '2px 5px', // Optional: adds some padding around the text
+                                        borderRadius: '3px' // Optional: rounds the corners for a more polished look
+                                    }}
+                                >
+                                    {order.payment ? "PAID" : (order.paymentMethod === "stripe" && !order.payment ? "FAILED" : "PENDING")}
+                                </strong>
+                            </p>
                             <button onClick={fetchOrders}>Track Order</button>
                         </div>
                     ))}
