@@ -89,7 +89,7 @@ const MyOrders = () => {
                             <p>${order.amount}</p>
                             <p>Order time: {formatDate(order.orderTime)}</p>
                             <p><span>&#x25cf;</span> <b>{order.status}</b></p>
-                            <p><span>Payment Status</span> <b>{order.payment}==="true"?"PAID":({order.payment}==="false"?"PAYMENT FAILED":"PAYMENT PENDING")</b></p>
+                            <p><span>Payment Status</span> <b>{order.payment === "true" ? "PAID" : order.payment === "false" ? "PAYMENT FAILED" : "PAYMENT PENDING"}</b></p>
                             <button onClick={fetchOrders}>Track Order</button>
                         </div>
                     ))}
