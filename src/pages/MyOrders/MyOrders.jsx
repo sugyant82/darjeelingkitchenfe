@@ -64,9 +64,28 @@ const MyOrders = () => {
         const orderCreatedsuccess = searchParams.get("success");
         if (orderCreatedsuccess === "true") {
             // Show success message
-            Swal.fire('Success!', 'Order has been Created Successfully.', 'success');
+            Swal.fire({
+                title: 'Success!',
+                text: 'Order has been Created Successfully!',
+                timer: 2000,
+                showConfirmButton: false,
+                width: '300px', // Reduce the width
+                customClass: {
+                  popup: 'small-popup'
+                }
+              });
         } else if (orderCreatedsuccess === "false") {
-            Swal.fire('Error!', 'Something went wrong.', 'error');
+            // Show success message
+            Swal.fire({
+                title: 'Payment Failed!',
+                text: 'Something went wrong!',
+                timer: 2000,
+                showConfirmButton: false,
+                width: '300px', // Reduce the width
+                customClass: {
+                  popup: 'small-popup'
+                }
+              });
         }
     }, [searchParams]);
 
