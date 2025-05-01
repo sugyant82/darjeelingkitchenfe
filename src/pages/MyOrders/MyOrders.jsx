@@ -5,6 +5,8 @@ import axios from 'axios';
 import { assets } from '../../assets/assets';
 import { useSearchParams } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
+import Swal from 'sweetalert2';
+
 
 const MyOrders = () => {
     const [data, setData] = useState([]);
@@ -61,9 +63,10 @@ const MyOrders = () => {
     useEffect(() => {
         const orderCreatedsuccess = searchParams.get("success");
         if (orderCreatedsuccess === "true") {
-            alert("Order Created Successfully");
+            // Show success message
+            Swal.fire('Success!', 'Order has been Created Successfully.', 'success');
         } else if (orderCreatedsuccess === "false") {
-            alert("Order Creation Failed");
+            Swal.fire('Error!', 'Something went wrong.', 'error');
         }
     }, [searchParams]);
 
