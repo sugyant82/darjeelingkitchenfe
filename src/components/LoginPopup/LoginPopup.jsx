@@ -34,7 +34,7 @@ const LoginPopup = ({setShowLogin}) => {
           })
           .catch((error) => {
             console.error('Google login error:', error.message);
-            alert("Google login failed. Please try again.");
+            Swal.fire('Login Failed', 'Google login failed. Please try again.!', 'error');
           })
           .finally(() => {
             setLoadingGoogleLogin(false);

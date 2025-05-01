@@ -4,6 +4,7 @@ import { StoreContext } from '../../context/StoreContext'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { assets } from '../../assets/assets';
+import Swal from 'sweetalert2';
 
 const PlaceOrder = () => {
 
@@ -76,7 +77,7 @@ const PlaceOrder = () => {
       orderTime: new Date(),
     }
 
-    let response = await axios.post(url + "/api/order/place", orderData, { headers: { token } });
+    let response = await axios.post(url + "/api/order/placecashorder", orderData, { headers: { token } });
     if (response.data.success) {
       const { session_url } = response.data;
       window.location.replace(session_url);
@@ -92,11 +93,14 @@ const PlaceOrder = () => {
   useEffect(() => {
     if (!token) {
       navigate('/cart');
-      alert("Login to checkout!");
+      //alert("Login to checkout!");
+      Swal.fire('Login', 'Please Login to checkout!', 'info');
+
     }
     else if (getTotalCartAmount() === 0) {
       navigate('/cart');
-      alert("Cart is Empty");
+      //alert("Cart is Empty");
+      Swal.fire('Empty Cart', 'Please add some items to Cart!', 'info');
     }
   }, [token])
 

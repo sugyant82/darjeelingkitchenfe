@@ -65,25 +65,27 @@ const MyOrders = () => {
         if (orderCreatedsuccess === "true") {
             // Show success message
             Swal.fire({
+                icon: 'success',
                 title: 'Success!',
-                text: 'Order has been Created Successfully!',
-                timer: 2000,
+                text: 'Order has been created successfully.',
+                timer: 2500,
                 showConfirmButton: false,
-                width: '300px', // Reduce the width
+                width: '300px', // Set smaller width
                 customClass: {
-                  popup: 'small-popup'
+                  popup: 'small-success-popup'
                 }
               });
         } else if (orderCreatedsuccess === "false") {
             // Show success message
             Swal.fire({
+                icon: 'error',
                 title: 'Payment Failed!',
-                text: 'Something went wrong!',
-                timer: 2000,
+                text: 'Something went wrong. Please try again.',
+                timer: 2500,
                 showConfirmButton: false,
-                width: '300px', // Reduce the width
+                width: '300px', // Set smaller width
                 customClass: {
-                  popup: 'small-popup'
+                  popup: 'small-success-popup'
                 }
               });
         }
