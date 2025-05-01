@@ -68,26 +68,32 @@ const MyOrders = () => {
                 icon: 'success',
                 title: 'Success!',
                 text: 'Order has been created successfully.',
-                timer: 2500,
-                showConfirmButton: false,
-                width: '300px', // Set smaller width
+                timer: 3500,
+                showConfirmButton: true,
+                confirmButtonColor: '#B83E26', // Red button
+                iconColor: '#B83E26',          // Red success icon
+                width: '250px',
                 customClass: {
-                  popup: 'small-success-popup'
+                    popup: 'small-success-popup',
+                    confirmButton: 'custom-confirm-btn'
                 }
-              });
+            });
         } else if (orderCreatedsuccess === "false") {
-            // Show success message
+            // Show failure message
             Swal.fire({
                 icon: 'error',
                 title: 'Payment Failed!',
                 text: 'Something went wrong. Please try again.',
-                timer: 2500,
-                showConfirmButton: false,
-                width: '300px', // Set smaller width
+                timer: 3500,
+                showConfirmButton: true,
+                confirmButtonColor: '#B83E26', // Red button
+                iconColor: '#B83E26',          // Red success icon
+                width: '250px',
                 customClass: {
-                  popup: 'small-success-popup'
+                    popup: 'small-success-popup',
+                    confirmButton: 'custom-confirm-btn'
                 }
-              });
+            });
         }
     }, [searchParams]);
 
@@ -119,14 +125,14 @@ const MyOrders = () => {
                                 <span>Payment: </span>
                                 <strong
                                     style={{
-                                        backgroundColor: order.payment ==='paid'? "green" : (order.paymentMethod === "stripe" && order.payment==='failed' ? "red" : "orange"),
+                                        backgroundColor: order.payment === 'paid' ? "green" : (order.paymentMethod === "stripe" && order.payment === 'failed' ? "red" : "orange"),
                                         fontWeight: 'bold',
                                         color: 'white', // Highlight color
                                         padding: '2px 5px', // Optional: adds some padding around the text
                                         borderRadius: '3px' // Optional: rounds the corners for a more polished look
                                     }}
                                 >
-                                    {order.payment==='paid' ? "PAID" : (order.paymentMethod === "stripe" && order.payment==='failed' ? "FAILED" : "PENDING")}
+                                    {order.payment === 'paid' ? "PAID" : (order.paymentMethod === "stripe" && order.payment === 'failed' ? "FAILED" : "PENDING")}
                                 </strong>
                             </p>
                             <button onClick={fetchOrders}>Track Order</button>

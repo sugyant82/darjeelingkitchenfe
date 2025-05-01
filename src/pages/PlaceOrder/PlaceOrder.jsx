@@ -94,13 +94,40 @@ const PlaceOrder = () => {
     if (!token) {
       navigate('/cart');
       //alert("Login to checkout!");
-      Swal.fire('Login', 'Please Login to checkout!', 'info');
-
+      //Swal.fire('Login', 'Please Login to checkout!', 'info');
+      Swal.fire({
+                      icon: 'info',
+                      title: 'Login!',
+                      text: 'Please Login to checkout!',
+                      timer: 3500,
+                      showConfirmButton: true,
+                      confirmButtonColor: '#B83E26', // Red button
+                      iconColor: '#B83E26',          // Red success icon
+                      width: '250px',
+                      customClass: {
+                        popup: 'small-success-popup',
+                        confirmButton: 'custom-confirm-btn'
+                      }
+                    });  
     }
     else if (getTotalCartAmount() === 0) {
       navigate('/cart');
       //alert("Cart is Empty");
-      Swal.fire('Empty Cart', 'Please add some items to Cart!', 'info');
+      //Swal.fire('Empty Cart', 'Please add some items to Cart!', 'info');
+      Swal.fire({
+        icon: 'info',
+        title: 'Empty Cart!',
+        text: 'Please add some items to Cart!',
+        timer: 3500,
+        showConfirmButton: true,
+        confirmButtonColor: '#B83E26', // Red button
+        iconColor: '#B83E26',          // Red success icon
+        width: '250px',
+        customClass: {
+          popup: 'small-success-popup',
+          confirmButton: 'custom-confirm-btn'
+        }
+      });  
     }
   }, [token])
 

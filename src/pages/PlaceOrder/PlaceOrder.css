@@ -47,6 +47,20 @@
     place-self: center;
 }
 
+/* Custom popup size and font */
+.swal2-popup.small-success-popup {
+    font-size: 11px; /* smaller font */
+    padding: 1.5em;
+  }
+  
+  /* Custom confirm button style */
+  .swal2-confirm.custom-confirm-btn {
+    background-color: #B83E26 !important; /* red */
+    color: white !important;
+    font-size: 11px;
+    padding: 0.5em 1em;
+  }
+
 @media (max-width: 750px) {
     .place-order {
         flex-direction: column;
